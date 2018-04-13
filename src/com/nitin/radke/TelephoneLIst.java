@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-
 /**
- * Servlet implementation class register
+ * Servlet implementation class TelephoneLIst
  */
-@WebServlet("/register")
-public class register extends HttpServlet {
+@WebServlet("/telephonelist")
+public class TelephoneLIst extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,24 +26,16 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String pass = request.getParameter("password");
-		String email = request.getParameter("email");
-		long phone = Long.parseLong(request.getParameter("phone"));
-		Registrationdb registrationdb =new Registrationdb();
+		String username = request.getParameter("name");
 		try {
-			int status = registrationdb.setdb(name, pass, email, phone);
-			if(status>0) {
-				System.out.println("done");
-			    request.getRequestDispatcher("Login.html").include(request, response); 
-			}
-			else
-				System.out.println("not done");
+			long number = new GetTelephoneDetails().getName(username);
+			
+			response.getWriter().println("<h3>The Information of user is : </h3>"
+				 	                     +"<table border=1px ><thead><th>Name</th><th>Phone Number</th></thead>"
+				 	                     + "<tbody><td>"+username+"</td><td>"+number+"</td></tbody></table>");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 }
+		

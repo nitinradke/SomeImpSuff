@@ -1,16 +1,8 @@
 package com.nitin.radke;
 
-public class User {  
-//private int id;  
+public class User {    
 String name,password,email;
 long number;  
-//public int getId() {  
-//    return id;  
-//}  
-//public void setId(int id) {  
-//    this.id = id;  
-//}  
-
 public String getName() {  
     return name;  
 }  

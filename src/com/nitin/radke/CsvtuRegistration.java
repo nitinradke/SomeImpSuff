@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-
 /**
- * Servlet implementation class register
+ * Servlet implementation class CsvtuRegistration
  */
-@WebServlet("/register")
-public class register extends HttpServlet {
+@WebServlet("/csvturegistration")
+public class CsvtuRegistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,13 +26,16 @@ public class register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
+		String name = request.getParameter("username");
 		String pass = request.getParameter("password");
-		String email = request.getParameter("email");
-		long phone = Long.parseLong(request.getParameter("phone"));
+		String security = request.getParameter("security");
+		System.out.println(name);
+		System.out.println(pass);
+		System.out.println(security);
+		
 		Registrationdb registrationdb =new Registrationdb();
 		try {
-			int status = registrationdb.setdb(name, pass, email, phone);
+			int status = registrationdb.setcsvtudb(name, pass, security);
 			if(status>0) {
 				System.out.println("done");
 			    request.getRequestDispatcher("Login.html").include(request, response); 
@@ -44,8 +45,6 @@ public class register extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 }

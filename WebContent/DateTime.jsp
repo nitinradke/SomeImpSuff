@@ -11,7 +11,7 @@
 <title>Date Time</title>
 </head>
 <body>
-<center><b>JSP Date and time application</b></center>
+<center><b><h1>JSP Date and time application</h1></b></center>
 <% 
 Date d = new Date();
 out.print("Today's date is : " + d.toString());
